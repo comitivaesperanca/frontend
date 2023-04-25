@@ -1,6 +1,3 @@
-#  Frontend
-Repositório para armazenar todos os componentes referentes a arquitetura Frontend do projeto [pantanal.dev](<Pantanal.dev>) da [Comitiva Esperança](<https://github.com/comitivaesperanca>).
-
 ## 🆘 Como executar?
 A plataforma é feita em Next e usando Typescript:
 - *[Nextjs](<https://nextjs.org/>)*
