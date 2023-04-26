@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Sidebar = ({ children }) => {
   return (
     <div className='flex'>
-      <div className='w-300 h-screen p-4 bg-[#333333] flex flex-col'>
+      <div className='w-300 h-auto p-4 bg-[#333333] flex flex-col'>
       {/* <div className='w-300 h-screen p-4 bg-[#333333] flex flex-col justify-between'> */}
         <div className='flex flex-row items-center'>
           <Link href='/'>
