@@ -36,13 +36,13 @@ const news = () => {
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between  '>
                   <div className='flex flex-row w-full items-center relative'>
                     <Image className='absolute right-0 mr-4' src="/search-icon.svg" alt="Radar da Soja" width={20} height={20} />
-                    <input class="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg" placeholder='Busque por termos'/>
+                    <input className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg" placeholder='Busque por termos'/>
                   </div>
               </div>
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between  '>
                   <div className='flex flex-row w-full items-center relative'>
-                    <select id="feeling" class="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px]  border p-4 rounded-lg  text-[#CCCCCC]">
-                      <option selected>Busque por sentimento</option>
+                    <select id="feeling" defaultValue={0} className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px]  border p-4 rounded-lg  text-[#CCCCCC]">
+                      <option value="0">Busque por sentimento</option>
                       <option value="1">Positivo</option>
                       <option value="2">Neutro</option>
                       <option value="3">Negativo</option>
@@ -51,24 +51,24 @@ const news = () => {
               </div>
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between'>
                   <div className='flex flex-row w-full items-center relative'>
-                    <input placeholder="Insira a data" class="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg" type="date" />
+                    <input placeholder="Insira a data" className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg" type="date" />
                   </div>
               </div>
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between  '>
                   <div className='flex flex-row w-full items-center relative'>
                     <Image className='absolute right-0 mr-4' src="/font-icon.svg" alt="Radar da Soja" width={20} height={20} />
-                    <input class="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg " placeholder='Busque por termos'/>
+                    <input className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg " placeholder='Busque por termos'/>
                   </div>
               </div>
           </div>
           <div className='grid lg:grid-cols-2 p-4 gap-2'>
               <div className='lg:col-end-7 col-span-1 bg-white flex justify-between  '>
-                <button class="bg-transparent text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+                <button className="bg-transparent text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
                   Limpar
                 </button>
               </div>
               <div className='lg:col-start-7 col-span-1 bg-white flex justify-between  '>
-                <button class="bg-[#A3D69C] text-[#575353] font-bold py-2 px-4 border  rounded">
+                <button className="bg-[#A3D69C] text-[#575353] font-bold py-2 px-4 border  rounded">
                   Buscar
                 </button>
               </div>
@@ -118,15 +118,15 @@ const news = () => {
           </ul>
           
         </div>
-        <div class="flex flex-col items-center my-10">
-          <span class="text-sm text-gray-700 mt-10">
-              Mostrando <span class="font-semibold text-gray-900">1</span> até <span class="font-semibold text-gray-900">10</span> de <span class="font-semibold text-gray-900">{countNews}</span> Notícias
+        <div className="flex flex-col items-center my-10">
+          <span className="text-sm text-gray-700 mt-10">
+              Mostrando <span className="font-semibold text-gray-900">1</span> até <span className="font-semibold text-gray-900">10</span> de <span className="font-semibold text-gray-900">{countNews}</span> Notícias
           </span>
-          <div class="inline-flex mt-2 xs:mt-0">
-              <button class="bg-transparent hover:bg-green-200 text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+          <div className="inline-flex mt-2 xs:mt-0">
+              <button className="bg-transparent hover:bg-green-200 text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
                 <FiChevronLeft size={16}/>
               </button>
-              <button class="bg-transparent text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+              <button className="bg-transparent text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
                   <FiChevronRight size={16}/>
               </button>
           </div>

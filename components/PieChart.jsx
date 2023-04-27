@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function PieChart() {
+export function PieChart(props) {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -38,7 +38,8 @@ export function PieChart() {
                 position: 'bottom',
             },
             title: {
-                display: false,
+                text: props.title,
+                display: true,
             }
         },
         maintainAspectRatio: false,
@@ -46,5 +47,5 @@ export function PieChart() {
     })
   }, []);
 
-  return <Pie  data={chartData} options={chartOptions}  />;
+  return <Pie data={chartData} options={chartOptions}  />;
 }
