@@ -1,8 +1,9 @@
 import React from 'react';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import { data } from '../data/data.js';
+import { data } from '../../data/data.js';
 import Image from 'next/image.js';
 import { useState, useEffect } from 'react'
+import Link from 'next/link.js';
 
 const news = () => {
   const [newsData, setNewsData] = useState([])
@@ -111,7 +112,9 @@ const news = () => {
                       {order.status}
                     </span>
                   </p>
-                  <FiChevronRight size={30}/>
+                  <Link href={'/news-info?id=' + order.id}>
+                    <FiChevronRight size={30}/>
+                  </Link>
                 </div>
               </li>
             ))}

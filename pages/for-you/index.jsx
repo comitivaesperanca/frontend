@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart } from '../components/PieChart.jsx';
+import { PieChart } from '../../components/PieChart.jsx';
 
 
 const customers = () => {
