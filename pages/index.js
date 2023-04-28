@@ -1,0 +1,27 @@
+import Head from 'next/head';
+import Header from '../components/Header';
+import TopCards from '../components/TopCards';
+import BarChart from '../components/BarChart';
+import SentimentsPieChart from '../components/SentimentsPieChart';
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>Radar da Soja</title>
+        <meta name='description' content='Radar da Soja' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/soy-logo.svg' />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
+      </Head>
+      <main className='bg-gray-100 min-h-screen'>
+        <Header />
+        <TopCards />
+        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+          <BarChart />
+          <SentimentsPieChart />
+        </div>
+      </main>
+    </>
+  );
+}
