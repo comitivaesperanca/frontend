@@ -75,7 +75,7 @@ const customers = () => {
                 data-testid="loader"
               />
             : <>
-               <div className={`lg:w-[300px] sm:w-60 p-4 border rounded-lg bg-white lg:m-0 sm:m-auto ${chartVisibility}`}>
+              <div className={`lg:w-[300px] sm:w-60 p-4 border rounded-lg bg-white lg:m-0 sm:m-auto ${chartVisibility}`}>
                 <PieChart title={"Sentimentos do texto"} />
               </div>
               <div className={`lg:w-[200px] lg:my-0 h-20 p-4 mx-4 border rounded-lg bg-white flex justify-center items-center sm:my-10 ${feelingVisibility}`}>

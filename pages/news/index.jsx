@@ -125,12 +125,11 @@ const news = () => {
             : data.map((order, id) => (
               <Link key={id} href={'/news-info?id=' + order.id}>
               <li
-                
                 className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
               >
                 <div className='flex'>
                   <div className='pl-4'>
-                    <p className='text-gray-800' id="title">
+                    <p className='text-gray-800  overflow-hidden' id="title">
                         Preço da Soja aumenta 50% em 2019 por conta de tal pessoa...
                     </p>
                   </div>
