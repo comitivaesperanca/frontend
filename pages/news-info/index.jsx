@@ -57,12 +57,12 @@ const NewsInfo = () => {
               </div>
           </div>
         </div>
-        <div className='flex lg:flex-row md:flex-col sm:flex-col m-auto lg:w-[800px] py-4 justify-center'>
-          <div className='w-full lg:w-[800px] lg:mx-10 md:m-auto sm:m-auto  p-4 border rounded-lg bg-white overflow-y-auto'>
+        <div className='flex lg:flex-row sm:flex-col w-full py-4 justify-around'>
+          <div className='w-full lg:w-[800px] lg:m-0  md:m-auto sm:m-auto  p-4 border rounded-lg bg-white '>
             <label className="block mb-2 text-sm font-medium text-gray-900">Conteúdo da notícia:</label>
             <textarea id="message" rows="8" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="..." disabled></textarea>
           </div>
-          <div className='lg:w-[300px] sm:w-60 p-4 border rounded-lg bg-white lg:m-0 sm:m-auto sm:mx-10'>
+          <div className='lg:w-[300px] sm:w-60 border rounded-lg bg-white lg:my-0 md:my-0 sm:my-2 lg:mx-0 md:mx-auto sm:mx-auto'>
             <PieChart title={"Sentimentos do texto"} />
           </div>
         </div>
