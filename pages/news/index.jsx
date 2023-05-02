@@ -4,7 +4,14 @@ import { data } from '../../data/data.js';
 import Image from 'next/image.js';
 import { useState, useEffect } from 'react'
 import Link from 'next/link.js';
+import BeatLoader from "react-spinners/BeatLoader";
+import 'react-toastify/dist/ReactToastify.css';
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 const news = () => {
   const [newsData, setNewsData] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -17,7 +24,6 @@ const news = () => {
 
 
   useEffect(() => {
-    setLoading(true)
     fetch('/api/profile-data')
       .then((res) => res.json())
       .then((value) => {
@@ -37,10 +43,15 @@ const news = () => {
   }
 
   const searchNews = () => {
-    console.log(date)
-    console.log(feeling)
-    console.log(font)
-    console.log(term)
+    
+    setLoading(true)
+      setTimeout(() => {
+        console.log(date)
+        console.log(feeling)
+        console.log(font)
+        console.log(term)
+        setLoading(false)
+      }, 5000)
   }
 
   return (
@@ -101,7 +112,17 @@ const news = () => {
             <span className='text-black-600 font-bold hidden sm:grid'>Sentimento</span>
           </div>
           <ul>
-            {data.map((order, id) => (
+            {
+            isLoading 
+            ? <BeatLoader
+                color={'#A3D69C'}
+                loading={isLoading}
+                cssOverride={override}
+                size={20}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            : data.map((order, id) => (
               <Link key={id} href={'/news-info?id=' + order.id}>
               <li
                 
