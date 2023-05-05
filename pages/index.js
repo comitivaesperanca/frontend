@@ -3,8 +3,18 @@ import Header from '../components/Header';
 import TopCards from '../components/TopCards';
 import BarChart from '../components/BarChart';
 import SentimentsPieChart from '../components/SentimentsPieChart';
+import { useState, useEffect } from 'react'
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function Home() {
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 5000)
+  }, []);
   return (
     <>
       <Head>
@@ -17,10 +27,21 @@ export default function Home() {
       <main className='bg-gray-100 min-h-screen'>
         <Header />
         <TopCards />
-        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
-          <BarChart />
-          <SentimentsPieChart />
-        </div>
+        {
+          isLoading 
+          ? <BeatLoader
+              color={'#A3D69C'}
+              loading={isLoading}
+              size={20}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          : <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+              <BarChart />
+              <SentimentsPieChart />
+            </div>
+        }
+        
       </main>
     </>
   );
