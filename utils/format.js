@@ -7,9 +7,9 @@ export const formatDate = (data) => {
 
 export const formatFinalSentiment = (sentiment) => {
     switch(sentiment){
-        case 'positive':
+        case 'Positiva':
             return 'Positivo'
-        case 'negative':
+        case 'Negativa':
             return 'Negativo'
         default:
             return 'Neutro'
@@ -18,9 +18,9 @@ export const formatFinalSentiment = (sentiment) => {
 
 export const formatFinalSentimentClass = (sentiment) => {
     switch(sentiment){
-        case 'positive':
+        case 'Positiva':
             return 'bg-green-200'
-        case 'negative':
+        case 'Negativa':
             return 'bg-red-200'
         default:
             return 'bg-gray-200'
