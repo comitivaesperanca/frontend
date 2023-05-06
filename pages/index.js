@@ -29,19 +29,20 @@ export default function Home() {
         <TopCards />
         {
           isLoading 
-          ? <BeatLoader
+          ? <div className='flex w-full items-center justify-center'>
+            <BeatLoader
               color={'#A3D69C'}
               loading={isLoading}
               size={20}
               aria-label="Loading Spinner"
               data-testid="loader"
             />
+          </div>
           : <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
               <BarChart />
               <SentimentsPieChart />
             </div>
         }
-        
       </main>
     </>
   );

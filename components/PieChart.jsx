@@ -5,12 +5,14 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function PieChart(props) {
+  console.log(props)
   const data = {
     labels: ['Positivo', 'Neutro', 'Negativo'],
     datasets: [
       {
         label: 'Sentimentos',
-        data: [12, 19, 3],
+        // data: [12, 19, 3],
+        data: [props.positive, props.neutral, props.negative],
         backgroundColor: [
           'rgba(163, 214, 156)',
           'rgba(229, 229, 229)',

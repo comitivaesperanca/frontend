@@ -6,52 +6,91 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link.js';
 import BeatLoader from "react-spinners/BeatLoader";
 import 'react-toastify/dist/ReactToastify.css';
+import { formatDate, formatFilters, formatFinalSentiment } from '@/utils/format.js';
 
 const override = {
   display: "block",
   margin: "0 auto",
   borderColor: "red",
 };
+
 const news = () => {
   const [newsData, setNewsData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [countNews, setCountNews] = useState(0);
 
-  const [term, setTerm] = useState('');
-  const [date, setDate] = useState('');
-  const [feeling, setFeeling] = useState(0);
-  const [font, setFont] = useState('');
+  const [pageSize, setPageSize] = useState(10);
+  const [pageIndex, setPageIndex] = useState(1);
 
+  const [term, setTerm]       = useState('');
+  const [date, setDate]       = useState('');
+  const [sentiment, setSentiment] = useState(0);
+  const [source, setSource]       = useState('');
+
+  const getNewsPaginated = async (filters = '') => {
+    try {
+        const res = await fetch(
+            process.env.NEXT_PUBLIC_API_URL + `news/Paginated?pageSize=${pageSize}&pageIndex=${pageIndex}${filters}`,
+            {
+                method: 'GET'
+            }
+        );
+        const { itemsOnPage } = await res.json();
+        console.log(itemsOnPage);
+        setNewsData(itemsOnPage)
+        setLoading(false)
+    } catch (err) {
+        console.log(pageIndex);
+        setLoading(false)
+    }
+  };
+
+  const getTotalNews = async () => {
+    try {
+        const res = await fetch(
+            process.env.NEXT_PUBLIC_API_URL + `count`,
+            {
+                method: 'GET'
+            }
+        );
+        const count = await res.json();
+        setCountNews(count)
+    } catch (err) {
+        console.log(pageIndex);
+    }
+  };
 
   useEffect(() => {
-    fetch('/api/profile-data')
-      .then((res) => res.json())
-      .then((value) => {
-        setNewsData(value)
-        setLoading(false)
-      });
+    getTotalNews()
+    setLoading(true)
+    getNewsPaginated()
     
-      setCountNews(newsData.length)
-
-  }, []);
+  }, [pageIndex]);
 
   const cleanSearchFields = () => {
-    setFeeling(0)
+    setSentiment(0)
     setDate('')
-    setFont('')
+    setSource('')
     setTerm('')
   }
 
+  const getPreviousPage = () => {
+    if(pageIndex == 1){
+      setPageIndex(1)
+    } else {
+      setPageIndex(pageIndex - 1)
+    }
+  }
+
+  const getNextPage = () => {
+    setPageIndex(pageIndex + 1)
+  }
+
   const searchNews = () => {
-    
+    var filter = formatFilters(term, source, date, sentiment);
+    console.log(filter)
     setLoading(true)
-      setTimeout(() => {
-        console.log(date)
-        console.log(feeling)
-        console.log(font)
-        console.log(term)
-        setLoading(false)
-      }, 5000)
+    getNewsPaginated(filter)
   }
 
   return (
@@ -73,7 +112,7 @@ const news = () => {
               </div>
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between  '>
                   <div className='flex flex-row w-full items-center relative'>
-                    <select id="feeling" name="feeling" value={feeling} onChange={e => { setFeeling(e.currentTarget.value); }} className=" w-full h-[53px]  border p-4 rounded-lg bg-white  ">
+                    <select id="sentiment" name="sentiment" value={sentiment} onChange={e => { setSentiment(e.currentTarget.value); }} className=" w-full h-[53px]  border p-4 rounded-lg bg-white  ">
                       <option value="0">Busque por sentimento</option>
                       <option value="1">Positivo</option>
                       <option value="2">Neutro</option>
@@ -89,7 +128,7 @@ const news = () => {
               <div className='lg:col-span-2 col-span-1 bg-white flex justify-between  '>
                   <div className='flex flex-row w-full items-center relative'>
                     <Image className='absolute right-0 mr-4' src="/font-icon.svg" alt="Radar da Soja" width={20} height={20} />
-                    <input id='term' name='term' value={font} onChange={e => { setFont(e.currentTarget.value); }} className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg " placeholder='Busque por fonte'/>
+                    <input id='source' name='source' value={source} onChange={e => { setSource(e.currentTarget.value); }} className="enabled:hover:border-gray-400 disabled:opacity-75 w-full h-[53px] border p-4 rounded-lg " placeholder='Busque por fonte'/>
                   </div>
               </div>
           </div>
@@ -114,43 +153,45 @@ const news = () => {
           <ul>
             {
             isLoading 
-            ? <BeatLoader
-                color={'#A3D69C'}
-                loading={isLoading}
-                cssOverride={override}
-                size={20}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            : data.map((order, id) => (
-              <Link key={id} href={'/news-info?id=' + order.id}>
+            ? <div className='flex w-full items-center justify-center'>
+                <BeatLoader
+                  color={'#A3D69C'}
+                  loading={isLoading}
+                  cssOverride={override}
+                  size={20}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            : newsData.map((newsInfo, id) => (
+              <Link key={id} href={'/news-info?id=' + newsInfo.id}>
               <li
                 className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
               >
                 <div className='flex'>
                   <div className='pl-4'>
                     <p className='text-gray-800  overflow-hidden' id="title">
-                        Preço da Soja aumenta 50% em 2019 por conta de tal pessoa...
+                        {newsInfo.title}
                     </p>
                   </div>
                 </div>
-                <p id="datetime" className='text-gray-600 sm:text-left text-right'>25/04/2023 15:30</p>
+                <p id="datetime" className='text-gray-600 sm:text-left text-right'>{formatDate(newsInfo.publicationDate)}</p>
                 <div id="font" className='sm:flex hidden justify-between items-center'>
-                  <p>{order.method}</p>
+                  <p>{newsInfo.source}</p>
                 </div>
                 <div className='sm:flex hidden justify-between items-center'>
                   <p className='text-gray-600 sm:text-left text-right'>
                     <span
                       id="feeling"
                       className={
-                        order.status == 'Positivo'
+                        formatFinalSentiment(newsInfo.finalSentiment) == 'Positivo'
                           ? 'bg-green-200 p-2 rounded-lg'
-                          : order.status == 'Neutro'
+                          : formatFinalSentiment(newsInfo.finalSentiment) == 'Neutro'
                           ? 'bg-gray-200 p-2 rounded-lg'
                           : 'bg-red-200 p-2 rounded-lg'
                       }
                     >
-                      {order.status}
+                      {formatFinalSentiment(newsInfo.finalSentiment)}
                     </span>
                   </p>
                     <FiChevronRight size={30}/>
@@ -161,15 +202,16 @@ const news = () => {
           </ul>
           
         </div>
-        <div className="flex flex-col items-center my-10">
-          <span className="text-sm text-gray-700 mt-10">
-              Mostrando <span className="font-semibold text-gray-900">1</span> até <span className="font-semibold text-gray-900">10</span> de <span className="font-semibold text-gray-900">{countNews}</span> Notícias
-          </span>
+        <div className="flex flex-col items-center my-4">
+          
           <div className="inline-flex mt-2 xs:mt-0">
-              <button className="bg-transparent hover:bg-green-200 text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+              <button className="bg-transparent hover:bg-green-200 text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded" onClick={getPreviousPage}>
                 <FiChevronLeft size={16}/>
               </button>
-              <button className="bg-transparent hover:bg-green-200  text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+              <button className="bg-transparent text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded">
+                { pageIndex }
+              </button>
+              <button className="bg-transparent hover:bg-green-200  text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded" onClick={getNextPage}>
                 <FiChevronRight size={16}/>
               </button>
           </div>
