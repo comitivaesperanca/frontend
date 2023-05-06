@@ -21,6 +21,8 @@ const news = () => {
 
   const [pageSize, setPageSize] = useState(10);
   const [pageIndex, setPageIndex] = useState(1);
+  const [startPagination, setStartPagination] = useState(1);
+  const [endPagination, setEndPagination] = useState(10);
 
   const [term, setTerm]       = useState('');
   const [date, setDate]       = useState('');
@@ -36,11 +38,9 @@ const news = () => {
             }
         );
         const { itemsOnPage } = await res.json();
-        console.log(itemsOnPage);
         setNewsData(itemsOnPage)
         setLoading(false)
     } catch (err) {
-        console.log(pageIndex);
         setLoading(false)
     }
   };
@@ -64,7 +64,6 @@ const news = () => {
     getTotalNews()
     setLoading(true)
     getNewsPaginated()
-    
   }, [pageIndex]);
 
   const cleanSearchFields = () => {
@@ -77,18 +76,23 @@ const news = () => {
   const getPreviousPage = () => {
     if(pageIndex == 1){
       setPageIndex(1)
+      setStartPagination(1)
+      setEndPagination(10)
     } else {
+      setStartPagination(startPagination - 10)
+      setEndPagination(endPagination - 10)
       setPageIndex(pageIndex - 1)
     }
   }
 
   const getNextPage = () => {
     setPageIndex(pageIndex + 1)
+    setStartPagination(startPagination + 10)
+    setEndPagination(endPagination + 10)
   }
 
   const searchNews = () => {
     var filter = formatFilters(term, source, date, sentiment);
-    console.log(filter)
     setLoading(true)
     getNewsPaginated(filter)
   }
@@ -168,9 +172,9 @@ const news = () => {
               <li
                 className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
               >
-                <div className='flex'>
+                <div className='flex  overflow-hidden'>
                   <div className='pl-4'>
-                    <p className='text-gray-800  overflow-hidden' id="title">
+                    <p className='text-gray-800 overflow-hidden' id="title">
                         {newsInfo.title}
                     </p>
                   </div>
@@ -203,7 +207,9 @@ const news = () => {
           
         </div>
         <div className="flex flex-col items-center my-4">
-          
+          <span className="text-sm text-gray-700 mt-2">
+              Mostrando <span className="font-semibold text-gray-900">{startPagination}</span> até <span className="font-semibold text-gray-900">{endPagination}</span> de <span className="font-semibold text-gray-900">{countNews}</span> Notícias
+          </span>
           <div className="inline-flex mt-2 xs:mt-0">
               <button className="bg-transparent hover:bg-green-200 text-[#575353] font-semibold  py-2 px-4 border border-[#575353] rounded" onClick={getPreviousPage}>
                 <FiChevronLeft size={16}/>

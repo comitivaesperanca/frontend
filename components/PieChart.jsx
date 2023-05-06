@@ -5,7 +5,6 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function PieChart(props) {
-  console.log(props)
   const data = {
     labels: ['Positivo', 'Neutro', 'Negativo'],
     datasets: [
