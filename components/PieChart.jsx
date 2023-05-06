@@ -10,7 +10,8 @@ export function PieChart(props) {
     datasets: [
       {
         label: 'Sentimentos',
-        data: [12, 19, 3],
+        // data: [12, 19, 3],
+        data: [props.positive, props.neutral, props.negative],
         backgroundColor: [
           'rgba(163, 214, 156)',
           'rgba(229, 229, 229)',
