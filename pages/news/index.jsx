@@ -7,6 +7,7 @@ import Link from 'next/link.js';
 import BeatLoader from "react-spinners/BeatLoader";
 import 'react-toastify/dist/ReactToastify.css';
 import { formatDate, formatFilters, formatFinalSentiment } from '@/utils/format.js';
+import { API_URL } from '@/config/index.js';
 
 const override = {
   display: "block",
@@ -32,7 +33,7 @@ const news = () => {
   const getNewsPaginated = async (filters = '') => {
     try {
         const res = await fetch(
-            process.env.NEXT_PUBLIC_API_URL + `news/Paginated?pageSize=${pageSize}&pageIndex=${pageIndex}${filters}`,
+            API_URL + `news/Paginated?pageSize=${pageSize}&pageIndex=${pageIndex}${filters}`,
             {
                 method: 'GET'
             }
@@ -48,7 +49,7 @@ const news = () => {
   const getTotalNews = async () => {
     try {
         const res = await fetch(
-            process.env.NEXT_PUBLIC_API_URL + `count`,
+          API_URL + `count`,
             {
                 method: 'GET'
             }

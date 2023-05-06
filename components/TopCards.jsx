@@ -1,3 +1,4 @@
+import { API_URL } from '@/config';
 import React from 'react'
 import { useState, useEffect } from 'react'
 
@@ -7,7 +8,7 @@ const TopCards = () => {
     const getTotalNews = async () => {
         try {
             const res = await fetch(
-                process.env.NEXT_PUBLIC_API_URL + `count`,
+                API_URL + `count`,
                 {
                     method: 'GET'
                 }

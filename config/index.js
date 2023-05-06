@@ -1,0 +1,1 @@
+export const API_URL = 'https://pantanal-dev-api--bc005my.victorioushill-c7f480dc.eastus2.azurecontainerapps.io/'
