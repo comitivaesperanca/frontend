@@ -6,6 +6,7 @@ import { PieChart } from '@/components/PieChart';
 import { formatFilters, formatFinalSentiment, formatFinalSentimentClass } from '@/utils/format.js';
 import Modal from 'react-modal';
 import { FiArrowRight } from 'react-icons/fi';
+import { API_URL } from '@/config';
 
 const customStyles = {
   content: {
@@ -38,7 +39,7 @@ const NewsInfo = () => {
 
     try {
         const res = await fetch(
-            process.env.NEXT_PUBLIC_API_URL + `news/${id}`,
+          API_URL + `news/${id}`,
             {
                 method: 'GET'
             }
