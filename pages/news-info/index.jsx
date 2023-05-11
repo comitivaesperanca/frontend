@@ -34,6 +34,7 @@ const NewsInfo = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  
   const getNewsPaginated = async (filters = '') => {
     const { id } = router.query;
 

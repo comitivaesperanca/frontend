@@ -28,11 +28,11 @@ export function SentimentsBarChart() {
     
       useEffect(() => {
         setChartData({
-            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'],
+            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
             datasets: [
                 {
                     label: 'Positivo',
-                    data: [10, 20, 30, 40, 50],
+                    data: [10, 20, 30, 40, 50, 40, 45],
                     backgroundColor: [
                         'rgba(163, 214, 156)',
                     ],
@@ -43,7 +43,7 @@ export function SentimentsBarChart() {
                 },
                 {
                     label: 'Neutro',
-                    data: [50, 40, 30, 20, 10],
+                    data: [50, 40, 30, 20, 10, 20, 30],
                     backgroundColor: [
                         'rgba(229, 229, 229)',
                     ],
@@ -54,7 +54,7 @@ export function SentimentsBarChart() {
                 }, 
                 {
                     label: 'Negativo',
-                    data: [60, 70, 10, 5, 30],
+                    data: [60, 70, 10, 5, 30, 10, 40],
                     backgroundColor: [
                         'rgba(247, 182, 196)',
                     ],
