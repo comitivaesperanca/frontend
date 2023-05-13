@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link.js';
 import BeatLoader from "react-spinners/BeatLoader";
 import 'react-toastify/dist/ReactToastify.css';
-import { formatDate, formatFilters, formatFinalSentiment } from '@/utils/format.js';
+import { formatDate, formatDate2, formatFilters, formatFinalSentiment, getMonthDate, getWeekDay } from '@/utils/format.js';
 import { API_URL } from '@/config/index.js';
 
 const override = {
