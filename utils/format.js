@@ -5,6 +5,20 @@ export const formatDate = (data) => {
     return date;
 }
 
+export const getWeekDay = (data) => {
+    var date = new Date(data)
+    const weekday = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+    let day = weekday[date.getDay()];
+    return day;
+}
+
+export const getMonthDate = (data) => {
+    var date = new Date(data)
+    var months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezenbro'];
+    let month = months[date.getMonth()];
+    return month;
+}
+
 export const formatFinalSentiment = (sentiment) => {
     switch(sentiment){
         case 'Positiva':

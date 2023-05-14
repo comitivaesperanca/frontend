@@ -1,9 +1,12 @@
 import { API_URL } from '@/config';
+import { formatFinalSentimentClass } from '@/utils/format';
 import React from 'react'
 import { useState, useEffect } from 'react'
 
 const TopCards = () => {
     const [countNews, setCountNews] = useState(0);
+    const [mostFrequentSentimentOnWeek, setMostFrequentSentimentOnWeek] = useState('');
+    const [frequentSentimentColor, setFrequentSentimentColor] = useState('bg-gray-200');
 
     const getTotalNews = async () => {
         try {
@@ -20,8 +23,25 @@ const TopCards = () => {
         }
       };
 
+      const getMostFrequentSentimentOnWeek = async () => {
+        try {
+            const res = await fetch(
+                API_URL + `news/MostFrequentSentimentOnWeek`,
+                {
+                    method: 'GET'
+                }
+            );
+            const sentiment = await res.text();
+            setMostFrequentSentimentOnWeek(sentiment)
+            setFrequentSentimentColor(formatFinalSentimentClass(sentiment))
+        } catch (err) {
+            console.log(err);
+        }
+      };
+
       useEffect(() => {
         getTotalNews()
+        getMostFrequentSentimentOnWeek()
       }, []);
 
   return (
@@ -30,7 +50,7 @@ const TopCards = () => {
             <div className='flex flex-col w-full items-center'>
                 <p className='text-gray-600'>Acurácia do Modelo:</p>
                 <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                    <span className='text-green-700 text-lg'>97%</span>
+                    <span className='text-green-700 text-lg'>67%</span>
                 </p>
             </div>
         </div>
@@ -43,8 +63,8 @@ const TopCards = () => {
         <div className='lg:col-span-2 col-span-1 bg-white flex justify-between w-full border p-4 rounded-lg'>
             <div className='flex flex-col w-full items-center'>
                 <p className='text-gray-600' id="website-counter">Sentimento semanal do mercado:</p>
-                <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                    <span className='text-green-700 text-lg'>Positivo</span>
+                <p className={`${frequentSentimentColor} flex justify-center items-center p-2 rounded-lg`}>
+                    <span className='text-lg'>{mostFrequentSentimentOnWeek}</span>
                 </p>
             </div>
         </div>
