@@ -32,15 +32,16 @@ const news = () => {
 
   const getNewsPaginated = async (filters = '') => {
     try {
-        const res = await fetch(
-            API_URL + `news/Paginated?pageSize=${pageSize}&pageIndex=${pageIndex}${filters}`,
+        fetch(
+          API_URL + `news/Paginated?pageSize=${pageSize}&pageIndex=${pageIndex}${filters}`,
             {
                 method: 'GET'
             }
-        );
-        const { itemsOnPage } = await res.json();
-        setNewsData(itemsOnPage)
-        setLoading(false)
+        ).then((res) => res.json())
+        .then((data) => {
+          setNewsData(data.itemsOnPage)
+          setLoading(false)
+        });
     } catch (err) {
         setLoading(false)
     }
@@ -48,14 +49,15 @@ const news = () => {
 
   const getTotalNews = async () => {
     try {
-        const res = await fetch(
+         fetch(
           API_URL + `count`,
             {
                 method: 'GET'
             }
-        );
-        const count = await res.json();
-        setCountNews(count)
+        ).then((res) => res.json())
+        .then((count) => {
+          setCountNews(count)
+        });
     } catch (err) {
         console.log(pageIndex);
     }
