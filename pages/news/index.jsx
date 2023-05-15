@@ -173,9 +173,9 @@ const news = () => {
               <li
                 className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'
               >
-                <div className='flex  overflow-hidden'>
-                  <div className='pl-4'>
-                    <p className='text-gray-800 overflow-hidden' id="title">
+                <div className='flex'>
+                  <div className='pl-4 w-100 text-ellipsis overflow-hidden whitespace-nowrap'>
+                    <p className='truncate ' id="title">
                         {newsInfo.title}
                     </p>
                   </div>
