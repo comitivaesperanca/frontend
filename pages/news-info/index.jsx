@@ -129,15 +129,15 @@ const NewsInfo = () => {
           </div>
         </div>
         <div className='flex lg:flex-row phone:flex-col w-full py-4 justify-around'>
-          <div className='w-full lg:w-[600px] h-[390px] lg:m-0 md:m-auto phone:m-auto  p-4 border rounded-lg bg-white'>
+          <div className='w-full lg:w-[100%] h-[390px] lg:m-0 md:m-auto phone:m-auto  p-4 border rounded-lg bg-white'>
             <label className="block mb-2 text-sm font-medium text-gray-900">Conteúdo da notícia:</label>
             <textarea id="message" rows="8" className="block p-2.5 w-full h-[330px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="..." disabled value={newsData?.newsContent}></textarea>
           </div>
           <div>
-            <div className='lg:w-[300px] h-[300px] border rounded-lg bg-white lg:my-0 md:my-0 phone:my-2 lg:mx-0 md:mx-auto phone:mx-auto'>
+            <div className='lg:w-[100%] h-[390px] border rounded-lg bg-white lg:my-0 md:my-0 phone:my-2 lg:mx-0 md:mx-auto phone:mx-auto'>
               <PieChart title={"Sentimentos do texto"} positive={newsData?.positiveSentiment} negative={newsData?.negativeSentiment} neutral={newsData?.neutralSentiment}/>
             </div>
-            <div className={`lg:w-[300px] h-20 p-4 my-2 border rounded-lg bg-white flex justify-center items-center`}>
+            <div className={`lg:w-[100%] h-[100px] p-4 my-2 border rounded-lg bg-white flex justify-center items-center`}>
               <div className='flex justify-center flex-col'>
                 <h1 className='text-[#575353] font-bold mb-2 text-sm'>Sentimento predominante da notícia:</h1>
                 <span className={`${sentiment} text-[#575353] font-bold px-4 border rounded m-auto`} >
@@ -145,7 +145,7 @@ const NewsInfo = () => {
                 </span>
               </div>
             </div>
-            <div className={`lg:w-[300px] h-14 p-4 flex justify-center items-center cursor-pointer`} >
+            <div className={`lg:w-[100%] h-14 p-4 flex justify-center items-center cursor-pointer`} >
                 <button className={`text-[#575353] font-bold px-4 border rounded m-auto bg-white hover:bg-green-200`} onClick={reclassifySentiment}>
                   Reclassificar sentimento
                 </button>
