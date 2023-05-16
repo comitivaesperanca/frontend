@@ -9,6 +9,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { API_URL } from '@/config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Head from 'next/head';
 
 const customStyles = {
   content: {
@@ -89,6 +90,14 @@ const NewsInfo = () => {
   }
 
   return (
+    <>
+    <Head>
+        <title>Radar da Soja - Visualizar Notícia</title>
+        <meta name='description' content='Radar da Soja' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/soy-logo.svg' />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
+    </Head>
     <div className='bg-gray-100 min-h-screen'>
       <div className='h-[100px] flex justify-between items-center px-4 pt-4 bg-white-100 w-full border-b-2 border-[#CCCCCC]'>
         <div>
@@ -179,6 +188,7 @@ const NewsInfo = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

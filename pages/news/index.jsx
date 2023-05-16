@@ -8,6 +8,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import 'react-toastify/dist/ReactToastify.css';
 import { formatDate, formatDate2, formatFilters, formatFinalSentiment, getMonthDate, getWeekDay } from '@/utils/format.js';
 import { API_URL } from '@/config/index.js';
+import Head from 'next/head.js';
 
 const override = {
   display: "block",
@@ -39,7 +40,7 @@ const news = () => {
             }
         ).then((res) => res.json())
         .then((data) => {
-          setNewsData(data.itemsOnPage)
+          setNewsData(data.itemsOnPage != undefined ? data.itemsOnPage : [])
           setLoading(false)
         });
     } catch (err) {
@@ -101,6 +102,14 @@ const news = () => {
   }
 
   return (
+    <>
+      <Head>
+        <title>Radar da Soja - Notícias</title>
+        <meta name='description' content='Radar da Soja' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/soy-logo.svg' />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
+      </Head>
     <div className='bg-gray-100 min-h-screen'>
       <div className='h-[100px] flex justify-between items-center px-4 pt-4 bg-white-100 w-full border-b-2 border-[#CCCCCC]'>
         <div>
@@ -227,6 +236,7 @@ const news = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
