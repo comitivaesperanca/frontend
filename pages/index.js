@@ -21,6 +21,7 @@ export default function Home() {
         <title>Radar da Soja</title>
         <meta name='description' content='Radar da Soja' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
         <link rel='icon' href='/soy-logo.svg' />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/datepicker.min.js"></script>
       </Head>
