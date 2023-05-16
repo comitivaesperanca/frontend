@@ -3,10 +3,12 @@ import Image from 'next/image.js';
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { PieChart } from '@/components/PieChart';
-import { formatFilters, formatFinalSentiment, formatFinalSentimentClass } from '@/utils/format.js';
+import { formatFilters, formatFinalSentiment, formatFinalSentimentClass, formatSuggestedSentiment } from '@/utils/format.js';
 import Modal from 'react-modal';
 import { FiArrowRight } from 'react-icons/fi';
 import { API_URL } from '@/config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const customStyles = {
   content: {
@@ -39,19 +41,42 @@ const NewsInfo = () => {
     const { id } = router.query;
 
     try {
-        const res = await fetch(
+        fetch(
           API_URL + `news/${id}`,
             {
                 method: 'GET'
             }
-        );
-        const { entity } = await res.json();
-        setNewsData(entity)
-        setLoading(false)
-        setSentiment(formatFinalSentimentClass(entity?.finalSentiment))
+        ).then((res) => res.json())
+        .then((data) => {
+          setNewsData(data.entity)
+          setLoading(false)
+          setSentiment(formatFinalSentimentClass(data.entity?.finalSentiment))
+        });
+        
     } catch (err) {
         setLoading(false)
     }
+  };
+
+  const sendSentimentSuggestion = async () => {
+    const { id } = router.query;
+
+    try {
+        fetch(
+          API_URL + `news/SaveSuggestedSentiment?newsId=${id}&sentiment=${formatSuggestedSentiment(sentimentWanted)}`,
+          {
+            method: 'POST',
+          }
+        ).then((res) => res.json())
+        .then((data) => {
+          setLoading(false)
+          toast.success('Uma nova sugestão de sentimento para esta notícia foi enviada.')
+        });
+    } catch (err) {
+        toast.error(err)
+        setLoading(false)
+     }
+    closeModal();
   };
 
   useEffect(() => {
@@ -144,12 +169,13 @@ const NewsInfo = () => {
                 <button className="bg-transparent text-[#575353] font-semibold  py-0 px-4 border border-[#575353] rounded h-[30px]" onClick={closeModal}>
                   Cancelar
                 </button>
-                <button className="bg-[#A3D69C] text-[#575353] font-bold ml-10 py-0 px-4 border rounded h-[30px]" >
+                <button className="bg-[#A3D69C] text-[#575353] font-bold ml-10 py-0 px-4 border rounded h-[30px]" onClick={sendSentimentSuggestion}>
                   Confimar
                 </button>
               </div>
             </Modal>
           </div>
+          <ToastContainer   />
         </div>
       </div>
     </div>

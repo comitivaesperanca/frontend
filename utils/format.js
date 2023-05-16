@@ -30,6 +30,17 @@ export const formatFinalSentiment = (sentiment) => {
     }
 }
 
+export const formatSuggestedSentiment = (sentiment) => {
+    switch(sentiment){
+        case '1':
+            return 'Positiva'
+        case '2':
+            return 'Negativa'
+        default:
+            return 'Neutra'
+    }
+}
+
 export const formatFinalSentimentClass = (sentiment) => {
     switch(sentiment){
         case 'Positiva':

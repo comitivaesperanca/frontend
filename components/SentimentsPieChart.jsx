@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart } from './PieChart.jsx';
 import { API_URL } from '@/config/index.js';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const SentimentsPieChart = () => {
   const [dailySentiments, setDailySentiments] = useState([]);
   const [dailyPositiveSentiment, setDailyPositiveSentiment] = useState(0);
