@@ -1,13 +1,14 @@
 version: '3.8'
 services:
-  web:
+  comitivaesperanca-frontend:
     build:
-      context: ./
-      target: runner
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
+      - /app/node_modules
     command: npm run dev
     ports:
-      - "3000:3000"
+      - "7000:3000"
     environment:
       NODE_ENV: development

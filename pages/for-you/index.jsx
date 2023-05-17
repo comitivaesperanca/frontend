@@ -116,10 +116,10 @@ const ForYou = () => {
                 data-testid="loader"
               />
             : <>
-              <div className={`lg:w-[300px] sm:w-60 p-4 border rounded-lg bg-white lg:m-0 sm:m-auto ${chartVisibility}`}>
+              <div className={`lg:w-[300px] lg:h-[300px] sm:w-60 p-4 border rounded-lg bg-white lg:m-0 sm:m-auto ${chartVisibility}`}>
                 <PieChart title={"Sentimentos da Notícia"} positive={dailyPositiveSentiment} negative={dailyNegativeSentiment} neutral={dailyNeutralSentiment} />
               </div>
-              <div className={`lg:w-[200px] lg:my-0 h-20 p-4 mx-4 border rounded-lg bg-white flex justify-center items-center sm:my-10 ${feelingVisibility}`}>
+              <div className={`lg:w-[200px] lg:h-[300px]  lg:my-0 h-20 p-4 mx-4 border rounded-lg bg-white flex justify-center items-center sm:my-10 ${feelingVisibility}`}>
                 <div className='flex justify-center flex-col'>
                   <h1 className='text-[#575353] font-bold mb-2'>Sentimento da notícia:</h1>
                   <span className={`${sentiment} text-[#575353]  font-bold px-4 border rounded m-auto`} >

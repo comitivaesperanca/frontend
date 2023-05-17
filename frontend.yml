@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: comitiva-esperanca-frontend
+  name: comitiva-esperanca-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comitiva-esperanca-frontend
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: comitiva-esperanca-frontend
+    spec:
+      containers:
+      - image: mfelipemota/comitivaesperanca-frontend:latest
+        name: comitiva-esperanca-frontend
+        env:
+        - name: API_URL
+          value: http://20.190.249.236/
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 3000 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comitiva-esperanca-frontend-service
+  labels:
+    run: comitiva-esperanca-frontend-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: comitiva-esperanca-frontend
+  type: LoadBalancer
