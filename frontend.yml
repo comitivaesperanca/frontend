@@ -22,6 +22,8 @@ spec:
         env:
         - name: API_URL
           value: http://20.190.249.236/
+        - name: API_PREDICT_URL
+          value: http://20.96.249.168/
         imagePullPolicy: Always
         resources: {}
         ports:
