@@ -50,7 +50,7 @@ const TopCards = () => {
             <div className='flex flex-col w-full items-center'>
                 <p className='text-gray-600'>Acurácia do Modelo:</p>
                 <p className='bg-green-200 flex justify-center items-center p-2 rounded-lg'>
-                    <span className='text-green-700 text-lg'>67%</span>
+                    <span className='text-green-700 text-lg'>76%</span>
                 </p>
             </div>
         </div>
