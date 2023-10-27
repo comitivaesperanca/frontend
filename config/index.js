@@ -1,2 +1,2 @@
-export const API_URL = 'http://20.190.249.236/'
-export const API_PREDICT_URL = 'http://20.96.249.168/'
+export const API_URL = 'https://backend-production-3b2b.up.railway.app/'
+export const API_PREDICT_URL = 'https://predict-api-production.up.railway.app/'
