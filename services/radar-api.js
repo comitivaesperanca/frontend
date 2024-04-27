@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = () => {
   const options = {
-    baseURL: process.env.API_URL,
+    baseURL: 'https://radar-da-soja-backend.up.railway.app',
     headers: {
         'Content-Type': 'application/json',
         accept: 'application/json'
